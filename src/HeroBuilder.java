@@ -1,4 +1,4 @@
-double maxHealth = 100;
+/*double maxHealth = 100;
 // Iteration 1: Variables
 // First character
 String firstName = "Ragnar";
@@ -18,13 +18,15 @@ double secondPlayerScore = 6000;
 double secondGold = 500.6;
 boolean secondIsLive = true;
 char secondType = 'M';  // Mage
-String[] secondInventory = {"Sword", "Shield", "Potion"};
+String[] secondInventory = {"Sword", "Shield", "Potion"};*/
 
+/*
 void printCharactersTitle(String characters){
     System.out.println("\n=== " + characters + " CHARACTER SHEET ===");
 }
+*/
 
-void printCharactersSheet(){
+/*void printCharactersSheet(){
     System.out.println("Name: " + firstName);
     System.out.println("Class: " + firstType);
     System.out.println("Level: " + firstLevel);
@@ -32,16 +34,16 @@ void printCharactersSheet(){
     System.out.println("XP: " + firstPlayerScore);
     System.out.println("Gold : " + firstGold);
     System.out.println("Alive: " + isAlive ());
-}
+}*/
 
-void printInventory(String[] inventory){
+/*void printInventory(String[] inventory){
     System.out.println("Inventory (" + inventory.length +   " items):");
     for (int i = 0; i < inventory.length; i++) {
         System.out.println("- " + inventory[i]);
     }
-}
+}*/
 
-void takeDamage(int amount) {
+/*void takeDamage(int amount) {
     int oldHealthPoint = 0;
     oldHealthPoint = firstHealthPoint;
     firstHealthPoint -= amount;
@@ -49,9 +51,9 @@ void takeDamage(int amount) {
     System.out.println();
     System.out.print(firstName + " takes " + amount + " damage ");
     System.out.print("Health: " + oldHealthPoint + " -> " + firstHealthPoint);
-}
+}*/
 
-void heal(int amount){
+/*void heal(int amount){
     int oldHealthPoint = 0;
     oldHealthPoint = firstHealthPoint;
     firstHealthPoint += amount;
@@ -59,56 +61,58 @@ void heal(int amount){
     System.out.println();
     System.out.print(firstName + " heals " + amount + " HP ");
     System.out.print("Health: " + oldHealthPoint + " -> " + firstHealthPoint);
-}
+}*/
 
-void addGold(double amount){
+/*void addGold(double amount){
     double oldHealthGold = 0;
     oldHealthGold = firstGold;
     firstGold += amount;
     System.out.println();
     System.out.print(firstName + " takes " + amount + " gold ");
     System.out.print("GOLD: " + oldHealthGold + " -> " + firstGold);
-}
+}*/
 
-void addXP(int amount) {
+/*void addXP(int amount) {
     firstPlayerScore += amount;
     System.out.println();
     System.out.print(firstName + " gains " + amount + " XP! ");
     System.out.print("Total : " + firstPlayerScore);
     System.out.println();
-}
+}*/
 
-boolean levelCheck (){
+/*boolean levelCheck (){
     int threshold = firstLevel * 1000;
     if (firstPlayerScore > threshold) {
         return true;
     } else {
         return false;
     }
-}
+}*/
 
-void printLevelUp(){
+/*void printLevelUp(){
     System.out.println("\n=== STATUS ===");
     System.out.println("Ready to level up");
     System.out.println(firstName + " is leveling up to level " + (firstLevel + 1));
     System.out.println();
-}
+}*/
 
-void levelUp (){
+/*void levelUp (){
     if (levelCheck() && isAlive()) {
         printLevelUp();
         firstLevel++;
         firstPlayerScore = 0;
         firstHealthPoint = 100;
     }
-}
+}*/
 
+/*
 
 boolean isAlive (){
     return firstHealthPoint > 0;
 }
+*/
 
-int clamp(int value, int min, int max){
+/*int clamp(int value, int min, int max){
     if (value < min) {
         return min;
     } else if (value > max) {
@@ -116,9 +120,9 @@ int clamp(int value, int min, int max){
     } else {
         return value;
     }
-}
+}*/
 
-boolean removeGold(double amount){
+/*boolean removeGold(double amount){
     if (firstGold > 0) {
         firstGold -= amount;
         return true;
@@ -126,7 +130,8 @@ boolean removeGold(double amount){
         return false;
     }
 
-}
+}*/
+/*
 
 boolean isHealthCritical() {
     return firstHealthPoint > 0 && firstHealthPoint < 25 * maxHealth / 100 ;
@@ -135,9 +140,11 @@ boolean isHealthCritical() {
 double getHealthPercentage(){
     return firstHealthPoint * 100 / maxHealth;
 }
+*/
 
 
 
+/*
 void main (){
 
 
@@ -146,9 +153,11 @@ void main (){
     printCharactersSheet();
     printInventory(firstInventory);
 
-   /* printCharactersTitle("SECOND");
+   */
+/* printCharactersTitle("SECOND");
     printCharactersSheet();
-    printInventory(secondInventory);*/
+    printInventory(secondInventory);*//*
+
 
     if (removeGold(100.0)) {
         System.out.println("\nBought a potion!");
@@ -187,6 +196,7 @@ void main (){
 
 }
 
+*/
 
 
 
