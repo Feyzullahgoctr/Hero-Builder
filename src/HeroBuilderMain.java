@@ -5,10 +5,12 @@ import java.util.Scanner;
 
 public class HeroBuilderMain {
 
+    // Vi skabte en helt
+    Character hero = new Character("Ragnar",'W');
+
     ArrayList<Character> enemy = new ArrayList<>();
     ArrayList<Item> items = new ArrayList<>();
     Random random = new Random();
-    Character hero = new Character("Ragnar",'W');
     int laps = 1;
 
     public int randomWeaponSelection() {
@@ -61,7 +63,8 @@ public class HeroBuilderMain {
                 break;
             case 5:
                 System.out.println("The character gave up fighting.");
-                return;
+                System.exit(0);
+                break;
             default:
                 printMenu();
                 break;
@@ -76,7 +79,7 @@ public class HeroBuilderMain {
             System.out.println(" === Characters receive random items ===");
             int weaponSelection = randomWeaponSelection();
             int armorSelection = randomArmorSelection();
-            // characters are receiving items
+            // Hero modtager genstande
             hero.addItem(items.get(weaponSelection));
             hero.addItem(items.get(armorSelection));
 
@@ -89,36 +92,38 @@ public class HeroBuilderMain {
         }
 
 
-        // vælger Enemy
+        // Et tilfældigt tal svarende til antallet af monstre på fjendelisten genereres,
+        // og et monster udvælges tilfældigt.
         int enemySelection = random.nextInt(enemy.size());
         Character opponent = enemy.get(enemySelection);
+
+        // Monster modtager tilfældige genstande
         int enemyWeaponSelection = randomWeaponSelection();
         int enemyArmorSelection = randomArmorSelection();
         opponent.addItem(items.get(enemyWeaponSelection));
         opponent.addItem(items.get(enemyArmorSelection));
+        // Monster vælger weapon og armor
         opponent.setWeapon(items.get(enemyWeaponSelection).getName());
         opponent.setArmor(items.get(enemyArmorSelection).getName());
         opponent.printItem();
 
-
-        // Hero udskriver
+        // Characters udskrives
         System.out.println(hero);
         System.out.println(opponent);
 
 
         while (hero.isAlive() && opponent.isAlive()) {
-            System.out.println(" === Attack starter === ");
+            System.out.println(" === Attack Begins === ");
             hero.attack(opponent);
             hero.levelUp();
             if (opponent.isAlive()) {
-                System.out.println(" === counterattack === ");
+                System.out.println(" === Counterattack === ");
                 opponent.attack(hero);
             }
         }
 
         System.out.println("------------------------");
-        hero.heal(random.nextInt(15)+1);
-        hero.getHealthPercentage();
+        hero.heal(random.nextInt(100)+1);
         if (hero.isHealthCritical()) {
             System.out.println(hero.getName() + " WARNING: Find a healer!");
         }
@@ -131,13 +136,16 @@ public class HeroBuilderMain {
 
     void main() {
 
-        // Vi definerer Character
+        hero.setHealth(200);
+
+        // Vi definerer Monster
         enemy.add(new Character("Goblin",'R'));
         enemy.add(new Character("Fire Imp", 'M'));
         enemy.add(new Character("Cave Orc", 'w'));
         enemy.add(new Character("Rotting Zombie", 'U'));
         enemy.add(new Character("Dark Wolf", 'B'));
 
+        // Vi definerer Item
         items.add(new Item("Sword", 2.5, 80, 85, 100, 0, "A"));
         items.add(new Item("Bow", 3.5, 100, 80, 120, 0, "A"));
         items.add(new Item("Dagger", 1.9, 110, 90, 100, 0, "A"));

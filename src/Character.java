@@ -19,7 +19,7 @@ public class Character {
 
     public Character(String name, char type) {
         this.name = name;
-        this.healthPoint = 200;
+        this.healthPoint = 100;
         this.level = 1;
         this.score = 0;
         this.gold = 100;
@@ -59,6 +59,10 @@ public class Character {
     }
     public String getArmor() {
         return armor;
+    }
+
+    public void setHealth(int health) {
+        healthPoint = health;
     }
     public boolean hasWeapon() {
         return weapon != null;
@@ -109,9 +113,7 @@ public class Character {
                 }
             }
 
-            if (type == 'W') {
-                attackDamage *= 2;
-            }
+
 
             double defenceOppenent = 0;
             for (Item item : character.items) {
@@ -154,16 +156,21 @@ public class Character {
 
         System.out.println(name + " takes " + amount + " damage, Health: " + oldHealthPoint + " -> " + healthPoint);
 
+        if (healthPoint == 0) {
+            isLive = false;
+        }
+
         removeGold(amount);
 
 
     }
 
     public void addGold(double amount){
-        double oldHealthGold = gold;
-        gold += amount;
-        System.out.println(name + " takes " + amount + " gold "+ oldHealthGold + " -> " + gold);
-
+        if (isLive) {
+            double oldHealthGold = gold;
+            gold += amount;
+            System.out.println(name + " takes " + amount + " gold "+ oldHealthGold + " -> " + gold);
+        }
     }
 
     public void removeGold(double amount){
@@ -185,8 +192,10 @@ public class Character {
     }
 
     public void addXP(int amount) {
-        score += amount;
-        System.out.println(name + " gains " + amount + " XP!, Total : " + score);
+        if (isLive) {
+            score += amount;
+            System.out.println(name + " gains " + amount + " XP!, Total : " + score);
+        }
     }
 
     public boolean isAlive (){
@@ -194,14 +203,16 @@ public class Character {
     }
 
     public void heal(int amount){
-        double oldHealthPoint = healthPoint;
-        healthPoint += amount;
+        if (isLive) {
+            double oldHealthPoint = healthPoint;
+            healthPoint += amount;
 
-        if (healthPoint > maxHealthPoint) {
-            healthPoint = maxHealthPoint;
+            if (healthPoint > maxHealthPoint) {
+                healthPoint = maxHealthPoint;
+            }
+
+            System.out.println(name + " heals " + amount + " HP, Health: " + oldHealthPoint + " -> " + healthPoint);
         }
-
-        System.out.println(name + " heals " + amount + " HP, Health: " + oldHealthPoint + " -> " + healthPoint);
     }
 
 
