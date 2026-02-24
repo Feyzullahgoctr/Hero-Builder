@@ -229,7 +229,7 @@ public class Character {
 
     public int levelIncrease(){
         int threshold = level * 1000;
-        int levelIncrease = (int) (score / threshold - level);  // Vi dividerer scoren med tærsklen.
+        int levelIncrease = (int) (score / threshold);  // Vi dividerer scoren med tærsklen.
 
         if (levelIncrease < 0) {
             levelIncrease = 0;
