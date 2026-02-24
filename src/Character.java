@@ -215,15 +215,6 @@ public class Character {
 
 
     // ------------------------------------
-    public boolean levelCheck (){
-        int threshold = level * 1000;
-        if (score > threshold) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
 
     /*  levelIncrease  algorithme
     For eksempel: Lad os sige, at scoren er 4000 og level er 1.
@@ -238,7 +229,7 @@ public class Character {
 
     public int levelIncrease(){
         int threshold = level * 1000;
-        int levelIncrease = (int) (score / threshold - level);
+        int levelIncrease = (int) (score / threshold - level);  // Vi dividerer scoren med tærsklen.
 
         if (levelIncrease < 0) {
             levelIncrease = 0;
@@ -252,6 +243,10 @@ public class Character {
             level += levelIncrease();
             score = 0;
         }
+    }
+
+    public boolean levelCheck (){
+        return score > level * 1000;
     }
     // ------------------------------------
 

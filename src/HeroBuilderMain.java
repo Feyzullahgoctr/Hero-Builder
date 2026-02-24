@@ -172,7 +172,7 @@ public class HeroBuilderMain {
 
     void printContents() {
         System.out.println("""
-            ====================================
+            ================= Den forklarer hvordan programmet fungerer ===================
             Der er en menu med følgende punkter:
             Character
             Monster
