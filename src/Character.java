@@ -158,7 +158,7 @@ public class Character {
             isLive = false;
         }
 
-        removeGold(amount);
+        removeGold(amount/2);
 
 
     }
@@ -173,15 +173,13 @@ public class Character {
 
     public void removeGold(double amount){
         if (hasGold(amount)) {
-
             double oldHealthGold = gold;
             gold -= amount;
 
             if (gold < 0) {
                 gold = 0;
             }
-
-            System.out.println(name + " lost " + amount + " gold after the attack " + oldHealthGold + " -> " + gold);
+            System.out.println(name + " lost " + amount + " gold after the attack, Gold: " + oldHealthGold + " -> " + gold);
         }
     }
 
@@ -215,36 +213,16 @@ public class Character {
 
 
     // ------------------------------------
-
-    /*  levelIncrease  algorithme
-    For eksempel: Lad os sige, at scoren er 4000 og level er 1.
-    I dette tilfælde skal level ifølge betingelsen være 4,
-    og når der foretages en forøgelse, skal level øges i overensstemmelse hermed.
-
-    4000 / 1000 = 4
-    4 - 1 = 3
-
-    Det giver en level-forøgelse på 3
-    */
-
-    public int levelIncrease(){
-        int threshold = level * 1000;
-        int levelIncrease = (int) (score / threshold);  // Vi dividerer scoren med tærsklen.
-
-        if (levelIncrease < 0) {
-            levelIncrease = 0;
-        }
-        return levelIncrease;
-    }
-
     public void levelUp (){
-        if (levelCheck() && isLive && levelIncrease() > 0) {
-            System.out.println(name + " is leveling up to level " + levelIncrease() );
+        if (levelCheck() && isLive) {
+            System.out.println(name + " is leveling up to level " + levelIncrease());
             level += levelIncrease();
             score = 0;
         }
     }
-
+    public int levelIncrease(){
+        return (int) (score / (level * 1000));
+    }
     public boolean levelCheck (){
         return score > level * 1000;
     }
