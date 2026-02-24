@@ -113,8 +113,6 @@ public class Character {
                 }
             }
 
-
-
             double defenceOppenent = 0;
             for (Item item : character.items) {
                 if (item.getName().equals(character.armor)) {
@@ -131,16 +129,16 @@ public class Character {
 
             System.out.println(name + " attacks " + character.name + " for " + netAttack + " damage");
 
-            // Hero takes gold
+            // Hero samler guld
             double goldTheft = netAttack / 2;
             if (character.hasGold(goldTheft)) {
                 addGold(goldTheft);
             }
 
-            //
+            // Hero samler point.
             addXP((int) (gold * 10));
 
-            //
+            // Modstanderen iværksætter et modangreb.
             character.takeDamage(netAttack);
         }
     }
@@ -226,6 +224,18 @@ public class Character {
         }
     }
 
+
+    /*  levelIncrease  algorithme
+    For eksempel: Lad os sige, at scoren er 4000 og level er 1.
+    I dette tilfælde skal level ifølge betingelsen være 4,
+    og når der foretages en forøgelse, skal level øges i overensstemmelse hermed.
+
+    4000 / 1000 = 4
+    4 - 1 = 3
+
+    Det giver en level-forøgelse på 3
+    */
+
     public int levelIncrease(){
         int threshold = level * 1000;
         int levelIncrease = (int) (score / threshold - level);
@@ -236,13 +246,9 @@ public class Character {
         return levelIncrease;
     }
 
-    public void printLevelUp(){
-        System.out.println(name + " is leveling up to level " + levelIncrease() );
-    }
-
     public void levelUp (){
         if (levelCheck() && isLive && levelIncrease() > 0) {
-            printLevelUp();
+            System.out.println(name + " is leveling up to level " + levelIncrease() );
             level += levelIncrease();
             score = 0;
         }
