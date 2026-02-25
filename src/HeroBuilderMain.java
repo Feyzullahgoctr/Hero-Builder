@@ -24,15 +24,19 @@ public class HeroBuilderMain {
     }
 
     public void printItem() {
+        System.out.println("=======================================");
         for (Item item : items) {
             System.out.println(item);
         }
+        System.out.println("=======================================");
     }
 
     public void printMonster() {
+        System.out.println("=======================================");
         for (Character e : enemy) {
             System.out.println(e);
         }
+        System.out.println("=======================================");
     }
 
     public void printMenu() {
@@ -52,8 +56,11 @@ public class HeroBuilderMain {
         switch (number) {
             case 0:
                 printContents();
+                break;
             case 1:
+                System.out.println("=======================================");
                 System.out.println(hero);
+                System.out.println("=======================================");
                 break;
             case 2:
                 printMonster();
@@ -76,7 +83,7 @@ public class HeroBuilderMain {
     }
 
     public void war() {
-        System.out.println( " === " + laps + ".laps === ");
+        System.out.println( " =============== " + laps + ".laps  =============== ");
 
         if ( !hero.hasWeapon() || !hero.hasArmor()) {
             System.out.println(" === Characters receive random items ===");
@@ -110,22 +117,27 @@ public class HeroBuilderMain {
         opponent.printItem();
 
         // Characters udskrives
+        System.out.println(" ============== Character ============== ");
         System.out.println(hero);
         System.out.println(opponent);
+        System.out.println();
+
 
         // Koden kører indtil en af dem dør
         while (hero.isAlive() && opponent.isAlive()) {
-            System.out.println(" === Attack Begins === ");
+            System.out.println(" ============ Attack Begins ============ ");
             hero.attack(opponent);
             hero.levelUp();
+            System.out.println();
             if (opponent.isAlive()) {
-                System.out.println(" === Counterattack === ");
+                System.out.println(" ============ Counterattack ============ ");
                 opponent.attack(hero);
+                System.out.println();
             }
         }
 
         // Hero får tilfældige helbredspoint efter hvert monsterangreb.
-        System.out.println("------------------------");
+        System.out.println("---------------------------------------");
         hero.heal(random.nextInt(100)+1);
 
         // Der udstedes en advarsel, hvis helbredstilstanden er under 25 %.
@@ -136,7 +148,15 @@ public class HeroBuilderMain {
         // Hvis monsteret er dødt, fjernes det fra listen.
         if (!opponent.getIsLive()) {
             enemy.remove(opponent);
+            System.out.println( opponent.getName() +" removes from list");
         }
+
+        if (hero.isAlive()) {
+            System.out.println(hero.getName() + " wins");
+        } else {
+            System.out.println(opponent.getName() + " wins!");
+        }
+        System.out.println();
 
         laps++;
     }
@@ -172,7 +192,9 @@ public class HeroBuilderMain {
 
     void printContents() {
         System.out.println("""
+            
             ================= Den forklarer hvordan programmet fungerer ===================
+           
             Der er en menu med følgende punkter:
             Character
             Monster
@@ -215,7 +237,8 @@ public class HeroBuilderMain {
             Hvis man vælger Attack igen, fortsætter programmet på samme måde,
             indtil alle monstre er døde.
             Alternativt kan man vælge Exit for at afslutte programmet.
-            ====================================
+            
+            ===============================================================================      
             """);
 
     }
